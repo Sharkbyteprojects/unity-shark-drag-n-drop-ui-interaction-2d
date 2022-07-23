@@ -12,7 +12,7 @@ public class textontop : MonoBehaviour
     Font font;
     [SerializeField]
     bool bestFitText = false;
-    [SerializeField]
+    //[SerializeField]
     [Range(1, 160)]
     public int fontSize = 14;
     Text p;
