@@ -10,6 +10,11 @@ public class textontop : MonoBehaviour
     public Color TextColor = Color.white;
     [SerializeField]
     Font font;
+    [SerializeField]
+    bool bestFitText = false;
+    [SerializeField]
+    [Range(1, 160)]
+    int fontSize = 14;
     Text p;
     SpriteRenderer r;
 
@@ -20,9 +25,14 @@ public class textontop : MonoBehaviour
             Vector3 n = r.transform.localScale;
             p.rectTransform.sizeDelta = new Vector2(n.x * .4f - 4, n.y * .5f - 2);
             Vector2 _p = Camera.main.WorldToViewportPoint(transform.position);
-            if(!shark.cman.between(_p.x, 0, 1)||!shark.cman.between(_p.y, 0, 1)) return;
+            if(!shark.cman.between(_p.x, 0, 1) || !shark.cman.between(_p.y, 0, 1)){
+                Destroy(p.gameObject);
+                p=null;
+                return;
+            }
             p.transform.position = _p * c.renderingDisplaySize;
             p.text = Text;
+            p.fontSize = fontSize;
             p.color = TextColor;
         }
         else
@@ -38,6 +48,7 @@ public class textontop : MonoBehaviour
             p = go.AddComponent<Text>();
             p.font = font;
             p.alignment = TextAnchor.MiddleCenter;
+            p.resizeTextForBestFit = bestFitText;
             render();
         }
     }
