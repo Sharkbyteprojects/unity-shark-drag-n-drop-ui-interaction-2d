@@ -14,7 +14,7 @@ public class textontop : MonoBehaviour
     bool bestFitText = false;
     [SerializeField]
     [Range(1, 160)]
-    int fontSize = 14;
+    public int fontSize = 14;
     Text p;
     SpriteRenderer r;
 
